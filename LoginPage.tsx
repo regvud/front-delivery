@@ -1,8 +1,8 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { UserLogin } from '../types/userTypes';
-import { authService } from '../services/authService';
+import { UserLogin } from './src/types/userTypes';
+import { authService } from './src/services/authService';
 import { useNavigate } from 'react-router-dom';
-import { urls } from '../constants/urls';
+import { urls } from './src/constants/urls';
 
 const LoginPage = () => {
   const { register, handleSubmit } = useForm<UserLogin>();
