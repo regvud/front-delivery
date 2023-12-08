@@ -9,3 +9,13 @@ export type ApiResponse<T> = {
 };
 
 export const apiService = axios.create({ baseURL });
+
+apiService.interceptors.request.use((req) => {
+  const access = localStorage.getItem('access');
+
+  if (access) {
+    req.headers.Authorization = `Bearer ${access}`;
+  }
+
+  return req;
+});

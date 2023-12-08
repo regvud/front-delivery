@@ -16,7 +16,6 @@ const DeliveryPage = () => {
   if (error as AxiosError) {
     console.error(error);
   }
-
   return (
     <>
       {isLoading ? (
