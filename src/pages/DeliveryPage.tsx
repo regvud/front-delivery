@@ -1,12 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
 import { deliveryService } from '../services/deliveryService';
 import { DeliveryCard } from '../components/DeliveryCard';
+import { useFetch } from '../hooks/useFetch';
 
 const DeliveryPage = () => {
-  const { data: deliveries, isLoading } = useQuery({
-    queryFn: () => deliveryService.getAll(),
-    queryKey: ['deliveries'],
-  });
+  const { data: deliveries, isLoading } = useFetch(deliveryService.getAll(), [
+    'deliveries',
+  ]);
 
   return (
     <>

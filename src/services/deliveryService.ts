@@ -1,5 +1,5 @@
 import { urls } from '../constants/urls';
-import { Delivery, UserDeliveries } from '../types/deliveryTypes';
+import { Delivery, UserDeliveriesResponse } from '../types/deliveryTypes';
 import { PaginatedResponse, apiService } from './apiService';
 
 export const deliveryService = {
@@ -9,6 +9,8 @@ export const deliveryService = {
       .then((res) => res.data),
   getUserDeliveries: () =>
     apiService
-      .get<UserDeliveries>(urls.deliveries.user)
+      .get<UserDeliveriesResponse>(urls.deliveries.user)
       .then((res) => res.data),
+  create: (delivery: Delivery) =>
+    apiService.post<Delivery>(urls.deliveries.create, delivery),
 };

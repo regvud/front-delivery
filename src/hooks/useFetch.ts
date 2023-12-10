@@ -1,13 +1,11 @@
-import { QueryFunction, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
-// export const useFetch = (
-//   queryFn: QueryFunction<Promise<T>>,
-//   queryKey: string[]
-// ) => {
-//   const { data, error, isLoading } = useQuery({
-//     queryFn: () => queryFn,
-//     queryKey: queryKey,
-//   });
+export const useFetch = <T>(queryFn: Promise<T>, queryKey: string[]) => {
+  const { data, error, isLoading } = useQuery({
+    queryFn: () => queryFn,
+    queryKey: queryKey,
+  });
 
-//   return { data, error, isLoading };
-// };
+  
+  return { data, error, isLoading };
+};

@@ -8,7 +8,7 @@ export type Delivery = {
   department: number;
 };
 
-export type UserDeliveries = {
+export type UserDeliveriesResponse = {
   sending: Delivery[];
   receiving: Delivery[];
 };
