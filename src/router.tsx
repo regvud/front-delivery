@@ -3,6 +3,7 @@ import { DeliveryPage } from './pages/DeliveryPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { LoginPage } from './pages/LoginPage';
 import { MainLayout } from './layouts/MainLayout';
+import { CreateDeliveryPage } from './pages/CreateDeliveryPage';
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: 'profile',
         element: <ProfilePage />,
+      },
+      {
+        path: 'profile/delivery/create',
+        element: <CreateDeliveryPage />,
       },
     ],
   },

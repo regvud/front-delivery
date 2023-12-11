@@ -21,7 +21,7 @@ const ProfilePage = () => {
   };
 
   const toCreateDeliveryPage = () => {
-    navigate('create');
+    navigate('delivery/create');
   };
 
   if (error as AxiosError) {

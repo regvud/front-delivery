@@ -5,7 +5,9 @@ interface ProfileProps {
 }
 
 const ProfileCard = ({ profile }: ProfileProps) => {
-  const lastLogin: string = new Date(profile.last_login).toUTCString();
+  const lastLogin: string = new Date(profile.last_login).toLocaleDateString(
+    'es-CL'
+  );
 
   return (
     <>

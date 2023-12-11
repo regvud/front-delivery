@@ -1,11 +1,13 @@
 import { AxiosError } from 'axios';
 
 interface ErrorHandlerProps {
-  error: AxiosError;
+  error: AxiosError | undefined;
 }
 
 const ErrorHandler = ({ error }: ErrorHandlerProps) => {
-  return <>{error.response?.data}</>;
+  return (
+    <h3>{`${JSON.stringify(error?.response?.data) || 'Unknown error'}`}</h3>
+  );
 };
 
 export { ErrorHandler };
