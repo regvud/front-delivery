@@ -2,7 +2,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { UserLogin } from '../types/userTypes';
 import { authService } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
-import { urls } from '../constants/urls';
 
 const LoginPage = () => {
   const { register, handleSubmit } = useForm<UserLogin>();
@@ -12,7 +11,7 @@ const LoginPage = () => {
     const { data } = await authService.login(user);
     localStorage.setItem('access', data.access);
 
-    navigate(urls.deliveries.base);
+    navigate('/profile');
   };
 
   return (

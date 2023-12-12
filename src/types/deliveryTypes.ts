@@ -6,6 +6,7 @@ export type Delivery = {
   sender: number;
   receiver: number;
   department: number;
+  status: string;
 };
 
 export type UserDeliveriesResponse = {

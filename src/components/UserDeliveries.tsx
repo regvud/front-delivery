@@ -1,7 +1,7 @@
 import { deliveryService } from '../services/deliveryService';
 import { AxiosError } from 'axios';
-import { DeliveryCard } from './DeliveryCard';
 import { useFetch } from '../hooks/useFetch';
+import { DeliveryMapComponent } from './DeliveryMapComponent';
 
 const UserDeliveries = () => {
   const {
@@ -13,6 +13,7 @@ const UserDeliveries = () => {
   if (error as AxiosError) {
     return <h1>{error?.message}</h1>;
   }
+
   return (
     <>
       {isLoading ? (
@@ -20,24 +21,16 @@ const UserDeliveries = () => {
       ) : (
         <>
           {userDeliveries?.receiving.length !== 0 && (
-            <div className="delivery-table">
-              <h2>Receiving</h2>
-              {userDeliveries?.receiving?.map((delivery) => (
-                <div className="delivery-block" key={delivery.id}>
-                  <DeliveryCard key={delivery.id} delivery={delivery} />
-                </div>
-              ))}
-            </div>
+            <DeliveryMapComponent
+              array={userDeliveries?.receiving}
+              title="receiving"
+            />
           )}
           {userDeliveries?.sending.length !== 0 && (
-            <div className="delivery-table">
-              <h2>Sending</h2>
-              {userDeliveries?.sending.map((delivery) => (
-                <div className="delivery-block" key={delivery.id}>
-                  <DeliveryCard key={delivery.id} delivery={delivery} />
-                </div>
-              ))}
-            </div>
+            <DeliveryMapComponent
+              array={userDeliveries?.sending}
+              title="sending"
+            />
           )}
         </>
       )}
