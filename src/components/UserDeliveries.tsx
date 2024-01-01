@@ -23,7 +23,7 @@ const UserDeliveries = () => {
           {userDeliveries?.receiving.length !== 0 && (
             <DeliveryMapComponent
               array={userDeliveries?.receiving}
-              title="receiving"
+              title="receiving" 
             />
           )}
           {userDeliveries?.sending.length !== 0 && (

@@ -16,6 +16,7 @@ const LoginPage = () => {
 
   return (
     <>
+      <h1>Welcome, you have to login to use all the features!</h1>
       <form onSubmit={handleSubmit(submit)}>
         <input type="text" placeholder="email" {...register('email')} />
         <input

@@ -1,16 +1,18 @@
-import { useNavigate } from 'react-router-dom';
 import { Delivery } from '../types/deliveryTypes';
 
 interface DeliveryCardProps {
   delivery: Delivery;
+  navigateFunc?: () => void;
   detailed?: boolean;
 }
 
-const DeliveryCard = ({ delivery, detailed }: DeliveryCardProps) => {
-  const navigate = useNavigate();
-
+const DeliveryCard = ({
+  delivery,
+  navigateFunc,
+  detailed,
+}: DeliveryCardProps) => {
   const toDetails = () => {
-    navigate(`delivery/${delivery.id}}`, { state: delivery });
+    navigateFunc && navigateFunc();
   };
 
   return (
@@ -18,9 +20,12 @@ const DeliveryCard = ({ delivery, detailed }: DeliveryCardProps) => {
       {detailed ? (
         <>
           <hr />
+
+          <h3>ID: {delivery.id}</h3>
           <h3>Status: {delivery.status}</h3>
           <h3>Receiver: {delivery.receiver}</h3>
           <h3>Sender: {delivery.sender}</h3>
+
           <div className="item-block">
             <h2>Item</h2>
             <h3>Label: {delivery.item.label}</h3>
@@ -30,13 +35,16 @@ const DeliveryCard = ({ delivery, detailed }: DeliveryCardProps) => {
         </>
       ) : (
         <>
+          <h3>ID: {delivery.id}</h3>
           <h3>Status: {delivery.status}</h3>
+
           <div className="item-block">
             <h2>Item</h2>
             <h3>Label: {delivery.item.label}</h3>
           </div>
 
           <button onClick={toDetails}>Details</button>
+
           <hr />
         </>
       )}

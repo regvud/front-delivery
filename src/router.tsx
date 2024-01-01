@@ -4,7 +4,6 @@ import { ProfilePage } from './pages/ProfilePage';
 import { LoginPage } from './pages/LoginPage';
 import { MainLayout } from './layouts/MainLayout';
 import { CreateDeliveryPage } from './pages/CreateDeliveryPage';
-import { DeliveryCard } from './components/DeliveryCard';
 import { DeliveryDetail } from './pages/DeliveryDetail';
 
 export const router = createBrowserRouter([
@@ -13,12 +12,20 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        index: true,
+        path: '',
+        element: <LoginPage />,
+      },
+      {
+        path: '/login',
         element: <LoginPage />,
       },
       {
         path: 'deliveries',
         element: <DeliveryPage />,
+      },
+      {
+        path: 'deliveries/:id',
+        element: <DeliveryDetail />,
       },
       {
         path: 'profile',
