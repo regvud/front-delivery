@@ -1,7 +1,6 @@
 import { authService } from '../services/authService';
 import { ProfileCard } from '../components/ProfileCard';
-import { AxiosError } from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UserDeliveries } from '../components/UserDeliveries';
 import { useFetch } from '../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
@@ -9,42 +8,48 @@ import { useNavigate } from 'react-router-dom';
 const ProfilePage = () => {
   const [showUserDeliveries, setShowUserDeliveries] = useState(false);
   const navigate = useNavigate();
+  const token = localStorage.getItem('access');
 
-  const {
-    data: profile,
-    error,
-    isLoading,
-  } = useFetch(authService.profile(), ['profile']);
+  useEffect(() => {
+    if (!token) {
+      navigate('/login');
+    }
+  }, [token, navigate]);
 
-  const showDeliveries = () => {
-    setShowUserDeliveries((prev) => !prev);
+  // Function to render content when token is present
+  const renderProfile = () => {
+    const {
+      data: profile,
+      error,
+      isLoading,
+    } = useFetch(authService.profile(), ['profile']);
+
+    if (error) return <h1>{error?.message}</h1>;
+    if (isLoading) return <h1>Loading...</h1>;
+
+    return (
+      <>
+        <h1>Profile</h1>
+        <hr />
+        {profile && <ProfileCard profile={profile} />}
+        <button onClick={() => navigate('delivery/create')}>
+          Send delivery
+        </button>
+        <button onClick={() => setShowUserDeliveries((prev) => !prev)}>
+          My deliveries
+        </button>
+        {showUserDeliveries && <UserDeliveries />}
+      </>
+    );
   };
 
-  const toCreateDeliveryPage = () => {
-    navigate('delivery/create');
-  };
-
-  if (error as AxiosError) {
-    return <h1>{error?.message}</h1>;
+  // If there is no token, return null to prevent rendering the content
+  if (!token) {
+    return null;
   }
 
-  return (
-    <>
-      <h1>Profile</h1>
-      {isLoading ? (
-        <h1>...Loading</h1>
-      ) : (
-        <>
-          <hr />
-          {profile && <ProfileCard profile={profile} />}
-
-          <button onClick={toCreateDeliveryPage}>Create delivery</button>
-          <button onClick={showDeliveries}>Deliveries</button>
-          {showUserDeliveries && <UserDeliveries />}
-        </>
-      )}
-    </>
-  );
+  // Render the content when the token is present
+  return renderProfile();
 };
 
 export { ProfilePage };

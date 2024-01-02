@@ -1,7 +1,7 @@
-import { error } from 'console';
 import { urls } from '../constants/urls';
+import { PaginatedResponse } from '../types/axiosTypes';
 import { Delivery, UserDeliveriesResponse } from '../types/deliveryTypes';
-import { PaginatedResponse, apiService } from './apiService';
+import { apiService } from './apiService';
 
 export const deliveryService = {
   getAll: () =>

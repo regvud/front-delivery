@@ -1,13 +1,6 @@
 import axios from 'axios';
 import { baseURL } from '../constants/urls';
 
-export type PaginatedResponse<T> = {
-  total_pages: number;
-  next: boolean;
-  prev: boolean;
-  results: T;
-};
-
 export const apiService = axios.create({ baseURL });
 
 apiService.interceptors.request.use((req) => {
@@ -19,3 +12,14 @@ apiService.interceptors.request.use((req) => {
 
   return req;
 });
+
+apiService.interceptors.response.use(
+  (res) => {
+    return res;
+  },
+  (error) => {
+    if (error.response.status === 401) {
+      return error;
+    }
+  }
+);

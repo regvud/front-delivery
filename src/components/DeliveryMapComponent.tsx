@@ -12,7 +12,7 @@ const DeliveryMapComponent = ({ array, title }: DeliveryMapComponentProps) => {
 
   return (
     <>
-      <h1>{title?.toUpperCase()}</h1>
+      {title && <h1>{title.toUpperCase()}</h1>}
       {array?.map((delivery) => (
         <div className="delivery-block" key={delivery.id}>
           <DeliveryCard
