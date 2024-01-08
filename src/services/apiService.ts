@@ -18,8 +18,6 @@ apiService.interceptors.response.use(
     return res;
   },
   (error) => {
-    if (error.response.status === 401) {
-      return error;
-    }
+    return error;
   }
 );

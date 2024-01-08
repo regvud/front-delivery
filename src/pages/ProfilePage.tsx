@@ -1,23 +1,18 @@
 import { authService } from '../services/authService';
 import { ProfileCard } from '../components/ProfileCard';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { UserDeliveries } from '../components/UserDeliveries';
 import { useFetch } from '../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
+import css from './styles/ProfilePage.module.css';
+import { PleaseLogin } from '../components/PleaseLogin';
 
 const ProfilePage = () => {
   const [showUserDeliveries, setShowUserDeliveries] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem('access');
 
-  useEffect(() => {
-    if (!token) {
-      navigate('/login');
-    }
-  }, [token, navigate]);
-
-  // Function to render content when token is present
-  const renderProfile = () => {
+  if (token) {
     const {
       data: profile,
       error,
@@ -28,7 +23,7 @@ const ProfilePage = () => {
     if (isLoading) return <h1>Loading...</h1>;
 
     return (
-      <>
+      <div className={css.profileContainer}>
         <h1>Profile</h1>
         <hr />
         {profile && <ProfileCard profile={profile} />}
@@ -39,17 +34,11 @@ const ProfilePage = () => {
           My deliveries
         </button>
         {showUserDeliveries && <UserDeliveries />}
-      </>
+      </div>
     );
-  };
-
-  // If there is no token, return null to prevent rendering the content
-  if (!token) {
-    return null;
   }
 
-  // Render the content when the token is present
-  return renderProfile();
+  return <PleaseLogin />;
 };
 
 export { ProfilePage };

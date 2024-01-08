@@ -4,3 +4,10 @@ export type PaginatedResponse<T> = {
   prev: boolean;
   results: T;
 };
+
+export type ResponseError = {
+  email?: string;
+  password?: string;
+  detail?: string;
+  phone?: string;
+};

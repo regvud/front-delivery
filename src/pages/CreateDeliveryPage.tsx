@@ -43,17 +43,18 @@ const CreateDeliveryPage = () => {
 
         <input
           type="text"
-          placeholder="item.label"
+          placeholder="label"
           {...register('item.label', { required: true })}
         />
         <input
           type="number"
           step=".01"
-          placeholder="item.price"
+          placeholder="price"
           {...register('item.price', { required: true, min: 1 })}
         />
 
         <div>
+          <h4>Size:</h4>
           <label>
             <input
               type="radio"
@@ -92,7 +93,7 @@ const CreateDeliveryPage = () => {
           </label>
         </div>
 
-        <button type="submit">Save</button>
+        <button type="submit">Send</button>
       </form>
     </div>
   );

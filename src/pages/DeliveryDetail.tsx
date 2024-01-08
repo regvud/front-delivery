@@ -48,7 +48,7 @@ const DeliveryDetail = () => {
   }
 
   // If neither location state nor id is available
-  return <h1>No delivery or id found...</h1>;
+  return <h1>No delivery found...</h1>;
 };
 
 export { DeliveryDetail };

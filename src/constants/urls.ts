@@ -15,6 +15,7 @@ export const urls = {
   },
   auth: {
     login: auth,
+    register: `${users}${create}`,
     profile: `${users}${profile}`,
   },
 };
